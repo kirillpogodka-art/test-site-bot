@@ -2,15 +2,15 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Тестовый сайт для бота</title>
+  <title>Тестовый сайт</title>
 
-  <!-- Яндекс.Метрика -->
+  <!-- Сломанная Яндекс.Метрика (с битым доменом) -->
   <script type="text/javascript">
      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
      m[i].l=1*new Date();
      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+     (window, document, "script", "https://mc.yandex.ru.broken-test.com/metrika/tag.js", "ym");
 
      ym(99999999, "init", {
           clickmap:true,
@@ -19,14 +19,14 @@
      });
   </script>
 
-  <!-- VK Pixel -->
+  <!-- Рабочий VK Pixel -->
   <script type="text/javascript">
     !function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?169",t.onload=function(){VK.Retargeting.Init("VK-RTRG-123456-abcde"),VK.Retargeting.Hit()},document.head.appendChild(t)}();
   </script>
 </head>
 <body>
   <h1>Тестовая страница проверки</h1>
-  <p>Здесь подключены пиксели Яндекс.Метрики и VK.</p>
+  <p>Метрика тут намеренно сломана, а VK работает.</p>
   <a href="https://kirillpogodka-art.github.io/test-site-bot/broken-link">Тестовая битая ссылка</a>
 </body>
 </html>
