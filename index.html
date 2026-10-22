@@ -1,36 +1,32 @@
-import asyncio
-from playwright.async_api import async_playwright
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Тестовый сайт для бота</title>
 
-# Список доменов трекеров, которые чекает бот
-TRACKER_DOMAINS = [
-    "mc.yandex.ru",      # Яндекс.Метрика
-    "top-fwz1.mail.ru",  # VK / Top.Mail.ru
-    "vk.com/r.php",      # VK Пиксель
-    "analytics.google.com",
-    "googletagmanager.com"
-]
+  <!-- Яндекс.Метрика -->
+  <script type="text/javascript">
+     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+     m[i].l=1*new Date();
+     for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+     k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
 
-async def run_broken_test(url: str):
-    async with async_playwright() as p:
-        browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context()
-        page = await context.new_page()
+     ym(99999999, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true
+     });
+  </script>
 
-        # Наглухо блокируем запросы к пикселям — чекер их не увидит в сети
-        async def block_trackers(route):
-            request_url = route.request.url
-            if any(domain in request_url for domain in TRACKER_DOMAINS):
-                # Имитируем сбой сети или 500 ошибку трекера
-                await route.abort("blockedbyclient")
-            else:
-                await route.continue_()
-
-        await page.route("**/*", block_trackers)
-
-        await page.goto(url, wait_until="networkidle")
-        print("Страница загружена с заблокированными пикселями.")
-        await browser.close()
-
-if __name__ == "__main__":
-    asyncio.run(run_broken_test("http://localhost:3000"))
-    
+  <!-- VK Pixel -->
+  <script type="text/javascript">
+    !function(){var t=document.createElement("script");t.type="text/javascript",t.async=!0,t.src="https://vk.com/js/api/openapi.js?169",t.onload=function(){VK.Retargeting.Init("VK-RTRG-123456-abcde"),VK.Retargeting.Hit()},document.head.appendChild(t)}();
+  </script>
+</head>
+<body>
+  <h1>Тестовая страница проверки</h1>
+  <p>Здесь подключены пиксели Яндекс.Метрики и VK.</p>
+  <a href="https://kirillpogodka-art.github.io/test-site-bot/broken-link">Тестовая битая ссылка</a>
+</body>
+</html>
