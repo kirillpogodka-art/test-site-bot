@@ -51,13 +51,6 @@
     h2 { margin: 0 0 8px; font-size: 19px; }
     p { margin: 0; color: #52606d; line-height: 1.5; }
     .asset { margin-top: 16px; }
-    .hidden-pixel {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      opacity: 0;
-      pointer-events: none;
-    }
     footer { margin-top: 32px; font-size: 14px; }
     footer a { color: #3b5bdb; }
   </style>
@@ -75,11 +68,11 @@
       <span class="badge">Шлюз №1</span>
       <h2>Stripe</h2>
       <p>
-        Загружается реальный статический ресурс с домена <code>stripe.com</code>.
+        Ссылка ведёт на реальный домен <code>stripe.com</code> и отвечает кодом 200.
         Бот должен определить шлюз как «✅ Работает».
       </p>
       <div class="asset">
-        <img src="https://stripe.com/favicon.ico" alt="Stripe" width="32" height="32">
+        <a href="https://stripe.com/" target="_blank" rel="noopener">Открыть сайт Stripe</a>
       </div>
     </div>
 
@@ -87,16 +80,12 @@
       <span class="badge">Шлюз №2</span>
       <h2>CloudPayments</h2>
       <p>
-        Запрос уходит на несуществующий поддомен <code>cloudpayments.ru</code> —
+        Ссылка ведёт на несуществующий поддомен <code>cloudpayments.ru</code> —
         DNS не резолвится, запрос падает. Бот должен определить шлюз как «❌ Ошибка».
       </p>
-      <img
-        class="hidden-pixel"
-        src="https://nonexistent-demo.cloudpayments.ru/pixel.png"
-        alt=""
-        width="1"
-        height="1"
-      >
+      <a href="https://nonexistent-demo.cloudpayments.ru/pay" target="_blank" rel="noopener">
+        Перейти к оплате через CloudPayments
+      </a>
     </div>
   </div>
 
